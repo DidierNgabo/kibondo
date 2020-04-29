@@ -1,0 +1,38 @@
+<%- include('partials/header')%>
+<div class="sub-menu">
+  <div class="container-fluid">
+    <p>
+      <a href="index.html"
+        ><span class="fas fa-home" aria-hidden="true"></span> Home</a
+      >
+      / contact
+    </p>
+    <p></p>
+  </div>
+</div>
+<!-- contact -->
+<div class="container">
+  <div class="contact">
+    <div class="w3_agileits_contact_grids">
+      <div class="col-md-9 w3_agileits_contact_grid_right">
+        <h2 class="w3_agile_header">Add a<span> Book</span></h2>
+
+        <form action="/books" method="POST">
+          <input type="text" placeholder="title" name="title" /><br /><br />
+          <input
+            type="text"
+            placeholder="illustrator"
+            name="illustrator"
+          /><br /><br />
+          <input type="text" placeholder="author" name="author" /><br /><br />
+          <input type="number" placeholder="pages" name="pages" /><br /><br />
+          <%= typeof msg != 'undefined' ? msg :''%>
+          <input type="file" placeholder="image" name="image" /><br /><br />
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</div>
+<%- include('partials/footer')%>

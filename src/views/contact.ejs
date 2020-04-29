@@ -1,0 +1,38 @@
+<%- include('partials/header')%>
+<div class="sub-menu">
+	<div class="container-fluid">
+		<p><a href="index.html"><span class="fas fa-home" aria-hidden="true"></span> Home</a> / contact<p>
+	</div>
+</div>
+<!-- contact -->
+<div class="container">
+  <div class="contact">
+    <div class="w3_agileits_contact_grids">
+      <div class="col-md-9 w3_agileits_contact_grid_right">
+        <h2 class="w3_agile_header">Leave a<span> Message</span></h2>
+
+        <form action="/contact" method="POST">
+          <span class="input input--ichiro">
+            <input class="input__field input__field--ichiro" type="text" id="input-25" name="name" placeholder=" " required=""/>
+            <label class="input__label input__label--ichiro" for="input-25">
+              <span class="input__label-content input__label-content--ichiro">Your Name</span>
+            </label>
+          </span>
+          <span class="input input--ichiro">
+            <input class="input__field input__field--ichiro" type="email" id="input-26" name="email" placeholder=" " required="" />
+            <label class="input__label input__label--ichiro" for="input-26">
+              <span class="input__label-content input__label-content--ichiro">Your Email</span>
+            </label>
+          </span>
+          <textarea name="message" placeholder="Your message here..." required="" ></textarea>
+          <input type="submit" name="send" value="Submit" width="50%">
+        </form>
+      </div>
+      <div class="clearfix"></div>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15949.83836541948!2d30.0975646!3d-1.9702507!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xda2504fe26ca9fb5!2sKibondo+Editions+Ltd!5e0!3m2!1sen!2srw!4v1549540910146" width="600" height="450" frameborder="0" style="width:100%" allowfullscreen></iframe>
+      <div class="clearfix"> </div>
+      
+    </div>
+  </div>
+</div>
+<%- include('partials/footer')%>
