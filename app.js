@@ -8,7 +8,9 @@ const multer = require("multer");
 //set Storage engine
 
 const storage = multer.diskStorage({
-  destination: "./public/uploads",
+  destination: (req, file, cb) => {
+    cb(null, "./public/uploads");
+  },
   filename: function (req, file, cb) {
     cb(
       null,
@@ -18,7 +20,7 @@ const storage = multer.diskStorage({
 });
 
 //init upload
-const upload = multer({
+let upload = multer({
   storage: storage,
 }).single("image");
 
@@ -32,10 +34,79 @@ const contactRoute = require("./src/routes/contactRoute");
 const { Client } = require("pg");
 const connection = require("./config/connection");
 const Book = require("./src/models/bookModel");
+const Category = require("./src/models/categoryModel");
+const Contact = require("./src/models/contactModel");
+const books = [
+  {
+    title: "gakumi",
+    author: "didi",
+    illustrator: "didi",
+    pages: "22",
+    image: "./images/didi.jpg",
+  },
+  {
+    title: "gasore",
+    author: "didier",
+    illustrator: "didier",
+    pages: "20",
+    image: "./images/didi.jpg",
+  },
+  {
+    title: "gakumi ajya  kwishuri",
+    author: "didas",
+    illustrator: "didas",
+    pages: "25",
+    image: "./images/didi.jpg",
+  },
+];
+const categories = [
+  {
+    name: "Board Books",
+    description: "book made of board",
+    image: "./images/board.jpg",
+  },
+  {
+    name: "Fabric Books",
+    description: "book made of clothers",
+    image: "./images/fabric.jpg",
+  },
+  {
+    name: "Read Aloud Books",
+    description: "book made for nursery students ",
+    image: "./images/readAloud.jpg",
+  },
+  {
+    name: "Reading Books",
+    description: "story books for grown kids",
+    image: "./images/reading.jpg",
+  },
+  {
+    name: "Cartoon Books",
+    description: "cartoon books for any age",
+    image: "./images/cartoon.jpg",
+  },
+];
 
+//create a bookCategory table with bookId and CategoryID
+Book.belongsToMany(Category, { as: "category", through: "BookCategories" });
+Category.belongsToMany(Book, { as: "book", through: "BookCategories" });
 connection
   .sync({
     logging: console.log,
+    force: true,
+  })
+  .then(() => {
+    Book.bulkCreate(books)
+      .then((books) => console.log("successfully added books"))
+      .catch((err) => console.log(err));
+  })
+  .then(() => {
+    Category.create(categories[0])
+      .then((category) => {
+        category.setBook([1, 2]);
+      })
+      .then((categories) => console.log("success adding categories"))
+      .catch((err) => console.log(err));
   })
   .then(() => {
     console.log("connection to database established successfully");

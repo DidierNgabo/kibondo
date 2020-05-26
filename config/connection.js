@@ -1,8 +1,6 @@
 const Sequelize = require("sequelize");
+require("dotenv/config");
 
-const connection = new Sequelize("kibondo", "postgres", "didiernu0304", {
-  host: "localhost",
-  dialect: "postgres",
-});
+const connection = new Sequelize(process.env.DB_CONNECTION);
 
 module.exports = connection;

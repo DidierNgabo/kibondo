@@ -1,6 +1,7 @@
 const express = require("express");
 const booksRoutes = express.Router();
 const Book = require("../models/bookModel");
+const fs = require("fs");
 
 function router(upload) {
   booksRoutes.route("/").get((req, res) => {
@@ -14,28 +15,29 @@ function router(upload) {
     res.render("bookForm");
   });
   booksRoutes.route("/").post((req, res) => {
-    const { title, author, illustrator, pages, image } = req.body;
-    console.log(req.body);
-    Book.create({
-      title,
-      author,
-      illustrator,
-      pages,
-      image: upload(req, res, (err) => {
-        if (err) {
-          res.render("bookForm", { msg: err });
-          console.log(err);
-        }
-        res.redirect("/books");
-        console.log("uploaded successfully");
-      }),
-    })
-      .then(() => {
-        console.log("book succesfully added");
+    upload(req, res, (err) => {
+      if (err) {
+        res.render("bookForm", { msg: err });
+        console.log(err);
+      }
+      res.redirect("/books");
+      console.log("uploaded successfully");
+      const { title, author, illustrator, pages } = req.body;
+      const image = fs.readFileSync(req.file.path);
+      console.log(req.body);
+      Book.create({
+        title,
+        author,
+        illustrator,
+        pages,
+        image,
       })
-      .catch((err) => console.log(err));
+        .then(() => {
+          console.log("book succesfully added");
+        })
+        .catch((err) => console.log(err));
+    });
   });
-
   return booksRoutes;
 }
 

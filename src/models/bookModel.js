@@ -7,7 +7,7 @@ const Book = connection.define("Book", {
   author: Sequelize.STRING,
   illustrator: Sequelize.STRING,
   pages: Sequelize.INTEGER,
-  image: Sequelize.STRING,
+  image: Sequelize.BLOB,
 });
 
 module.exports = Book;
