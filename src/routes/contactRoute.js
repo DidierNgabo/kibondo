@@ -1,20 +1,22 @@
-const express = require("express");
-const contactRoute = express.Router();
-const Contact = require("../models/contactModel");
+const express = require('express');
 
-contactRoute.route("/").get((req, res) => {
-  res.render("contact");
+const contactRoute = express.Router();
+
+const Contact = require('../models/contactModel');
+
+contactRoute.route('/').get((req, res) => {
+  res.render('contact');
 });
-contactRoute.route("/").post((req, res) => {
+contactRoute.route('/').post((req, res) => {
   const { name, email, message } = req.body;
   Contact.create({
     name,
     email,
     message,
   })
-    .then((results) => {
-      console.log("message successfully saved");
-      res.redirect("/contact");
+    .then(() => {
+      console.log('message successfully saved');
+      res.redirect('/contact');
     })
     .catch((err) => console.log(err));
 });

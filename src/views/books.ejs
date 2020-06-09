@@ -1,41 +1,48 @@
 <%- include('partials/header.ejs')%>
 <!--breadcrumbs-->
 <div class="sub-menu">
-	<div class="container-fluid">
-		<p><a href="index.html"><span class="fas fa-home" aria-hidden="true"></span> Home</a> / board<p>
-	</div>
+  <div class="container-fluid">
+    <p>
+      <a href="index.html"
+        ><span class="fas fa-home" aria-hidden="true"></span> Home</a
+      >
+      / board
+    </p>
+    <p></p>
+  </div>
 </div>
 <h2 class="page-header">board books</h2>
 <div class="container">
   <div class="col-sm-5 search">
-   <form action="#" method="">
-     <input type="search" placeholder="search for a book"  class="form-control "required="">
-     <button type="submit" class="btn btn-default search">
-       <i class="fas fa-search" aria-hidden="true"></i>
-     </button>
-   </form>
+    <form action="#" method="">
+      <input
+        type="search"
+        placeholder="search for a book"
+        class="form-control"
+        required=""
+      />
+      <button type="submit" class="btn btn-default search">
+        <i class="fas fa-search" aria-hidden="true"></i>
+      </button>
+    </form>
   </div>
- </div>
+</div>
 
 <div class="clearfix"></div>
 <div class="container">
   <div class="row">
-         <% books.forEach((book)=>{%>
-                  <div class="col-sm-4">
-                    <div class="book-wrapper">
-                      <img src="images/<%= book.image%>">
-                      <h3><%= book.title%></h3>
-                      <p><span>author</span>:<%= book.author%></p>
-                      <p><span>Illustator</span>:<%= book.illustrator%></p>
-                      <button type="button" class="btn btn-primary">Read More</button>
-                    </div>
-                  </div>
-        <% }) %>
-                 
-  
-                  
-                
-           </div>
+    <% books.forEach((book)=>{%>
+    <div class="col-sm-4">
+      <div class="book-wrapper">
+        <img src="/uploads/<%= book.image%>" />
+        <h3><%= book.title%></h3>
+        <p><span>author</span>:<%= book.author%></p>
+        <p><span>Illustator</span>:<%= book.illustrator%></p>
+        <button type="button" class="btn btn-primary">Read More</button>
+      </div>
+    </div>
+    <% }) %>
+  </div>
 </div>
 <div class="clearfix"></div>
 <%- include('partials/footer.ejs')%>
