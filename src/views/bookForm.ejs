@@ -27,7 +27,19 @@
           <input type="text" placeholder="author" name="author" /><br /><br />
           <input type="number" placeholder="pages" name="pages" /><br /><br />
           <%= typeof msg != 'undefined' ? msg :''%>
-          <input type="file" placeholder="image" name="image" /><br /><br />
+          <input
+            type="file"
+            id="image"
+            placeholder="image"
+            name="image"
+          /><br /><br />
+          <img
+            id="image-preview"
+            height="80"
+            width="80"
+            style="display: none;"
+          />
+          <span id="image-name"></span>
           <button type="submit">Submit</button>
         </form>
       </div>
@@ -35,4 +47,5 @@
     </div>
   </div>
 </div>
+<script src="/js/scripts.js"></script>
 <%- include('partials/footer')%>
