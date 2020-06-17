@@ -11,6 +11,7 @@ const booksRoutes = require('./src/routes/booksRoutes');
 const servicesRoutes = require('./src/routes/servicesRoutes');
 const aboutRoute = require('./src/routes/aboutRoute');
 const contactRoute = require('./src/routes/contactRoute');
+const categoriesRoutes = require('./src/routes/categoriesRoutes');
 
 // db
 const connection = require('./config/connection');
@@ -102,6 +103,7 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/books', booksRoutes);
+app.use('/categories', categoriesRoutes);
 app.use('/services', servicesRoutes);
 app.use('/about', aboutRoute);
 app.use('/contact', contactRoute);
